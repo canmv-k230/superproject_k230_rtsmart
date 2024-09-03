@@ -53,9 +53,8 @@ jobs:
           projects=("k230_canmv_01studio_defconfig")
           for proj in ${projects[@]};do
             echo "-------------------"
-            echo "build project ${proj}-standard"
+            echo "build project ${proj}"
             echo "-------------------"
-            make dist_clean
             make ${proj}
             time make log
             echo "-------------------"
