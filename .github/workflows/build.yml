@@ -46,11 +46,14 @@ jobs:
             cmake libyaml-dev scons mtools bzip2
           pip3 install pycryptodome gmssl
 
+      - name: Download toolchains
+        run: |
+          make dl_toolchain
+
       - name: Build Projects
         run: |
           export IS_CI=2
-          make dl_toolchain
-          projects=("k230_canmv_01studio_defconfig")
+          projects=("k230_canmv_01studio_defconfig" "k230d_canmv_bpi_zero_defconfig")
           for proj in ${projects[@]};do
             echo "-------------------"
             echo "build project ${proj}"
@@ -70,10 +73,10 @@ jobs:
 
       - name: Upload images to PreRelease Asset
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/heads/dev')
         with:
           tag_name: PreRelease-${{ github.ref_name }}
-          artifacts: |
+          files: |
             output/**/*.img.bz2
           prerelease: true
           generate_release_notes: true
