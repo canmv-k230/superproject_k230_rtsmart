@@ -38,7 +38,7 @@ toolchain_install_path=$(SDK_TOOLCHAIN_DIR)/$(toolchain_file_name)
 install:
 	@if [ ! $(TOOLCHIAN_EXIST) -eq 1 ]; then \
 		if [ ! -f $(toolchain_install_path) ]; then \
-			echo "Download toolchain $(toolchain_file_name)"; \
+			echo "Download toolchain $(toolchain_file_name) from $(toolchain_download_url)"; \
 			wget -q --show-progress -P $(SDK_TOOLCHAIN_DIR) $(toolchain_download_url); \
 		fi; \
 		echo "Extract toolchains..."; \
