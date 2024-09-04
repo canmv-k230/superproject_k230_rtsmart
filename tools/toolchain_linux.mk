@@ -25,6 +25,11 @@ else
 	DOWNLOAD_SERVER?=https://kendryte-download.canaan-creative.com/k230/toolchain
 endif
 
+# for git actions
+ifeq ($(CI),true)
+	DOWNLOAD_SERVER:=https://github.com/canmv-k230/superproject_k230_rtsmart/releases/download/PreRelease-dev/
+endif
+
 toolchain_file_name=Xuantie-900-gcc-linux-5.10.4-glibc-x86_64-V2.6.0.tar.bz2
 toolchain_download_url=$(DOWNLOAD_SERVER)/$(toolchain_file_name)
 toolchain_install_path=$(SDK_TOOLCHAIN_DIR)/$(toolchain_file_name)

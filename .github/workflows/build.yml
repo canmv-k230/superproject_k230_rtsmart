@@ -77,7 +77,7 @@ jobs:
 
       - name: Upload images to PreRelease Asset
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/heads/dev')
+        if: startsWith(github.ref, 'refs/heads/dev') || startsWith(github.ref, 'refs/heads/test/')
         with:
           tag_name: PreRelease-${{ github.ref_name }}
           files: |
